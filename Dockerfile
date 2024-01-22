@@ -14,6 +14,7 @@ RUN apk update \
     && pear upgrade --force  && pecl upgrade  && mkdir -p /etc/php.d/ \
     && echo "extension=oci8.so" > /etc/php.d/instantclient.ini \
     && docker-php-ext-configure oci8 --with-oci8=instantclient,/usr/local/instantclient_21_1 \
-    && docker-php-ext-install oci8
+    && docker-php-ext-install oci8 \
+    && rm -rf /tmp/*.zip /var/cache/apk/* /tmp/pear/
 
 USER adminer
